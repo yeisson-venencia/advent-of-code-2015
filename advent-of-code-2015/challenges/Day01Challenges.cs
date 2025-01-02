@@ -1,6 +1,6 @@
 namespace advent_of_code_2015.challenges;
 
-public class Day01Challenges
+public class Day01Challenges: IChallengeSolver
 {
     private static string ReadInputData()
     {
@@ -8,7 +8,7 @@ public class Day01Challenges
         
         return data;
     }
-    public static void SolvePart01()
+    public void SolvePart01()
     {
         var data = ReadInputData();
         var totalUp = 0;
@@ -21,7 +21,7 @@ public class Day01Challenges
         Console.WriteLine("Result part 01: {0}", totalUp - totalDown);
     }
     
-    public static void SolvePart02()
+    public void SolvePart02()
     {
         var data = ReadInputData();
         var currentFloor = 0;
