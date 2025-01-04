@@ -2,6 +2,6 @@
 
 using advent_of_code_2015.challenges;
 
-var solver = new Day05Challenges();
+var solver = new Day06Challenges();
 solver.SolvePart01();
-solver.SolvePart02();
+// solver.SolvePart02();
