@@ -88,9 +88,59 @@ public class Day06Challenges: IChallengeSolver
         
         Console.WriteLine($"Solution part 01 : {total}");
     }
+    
+    private static List<List<int>> CreateIntMatrix()
+    {
+        var matrix = new List<List<int>>();
+        for (var i = 0; i < 1000; i++)
+        {
+            var row = new List<int>();
+            for (var j = 0; j < 1000; j++)
+            {
+                row.Add(0);
+            }
+            matrix.Add(row);
+        }
+        return matrix;
+    }
+    
+    private static int OperateValue(int value, char op)
+    {
+        if (op == 'O')
+        {
+            return value + 1;
+        }
+        
+        if (op == 'F')
+        {
+            return value == 0 ? 0 : value - 1;
+        }
+
+        return value + 2;
+    }
+    
+    private static void ProcessInstruction(List<List<int>> matrix, (char op, int sx, int sy, int ex, int ey) instruction )
+    {
+        for (var j = instruction.sy; j <= instruction.ey; j++)
+        {
+            for (var i = instruction.sx; i <= instruction.ex; i++)
+            {
+                matrix[j][i] = OperateValue(matrix[j][i], instruction.op);
+            }
+        }
+    }
 
     public void SolvePart02()
     {
-        throw new NotImplementedException();
+        var data = LoadData();
+        var matrix = CreateIntMatrix();
+        foreach (var instruction in data)
+        {
+            ProcessInstruction(matrix, instruction);
+        }
+
+        var total = matrix.Sum(row => row.Sum());
+        
+        Console.WriteLine($"Solution part 02 : {total}");
     }
 }
